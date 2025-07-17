@@ -1,0 +1,28 @@
+name: Intervals Notifier
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"  # co 1 minutę
+  workflow_dispatch:       # pozwala też uruchomić ręcznie
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run notifier
+        env:
+          INTERVALS_API_TOKEN: ${{ secrets.INTERVALS_API_TOKEN }}
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: python main.py

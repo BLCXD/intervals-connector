@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Intervals Notifier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- OneSignal Web SDK -->
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "41a7f5b9-3e16-475d-91ba-b379c82e0cef", // <-- WSTAW SWOJE APP ID Z ONESIGNAL
+      });
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Intervals Notifier</h1>
+  <p></p>
+  <button onclick="OneSignal.showSlidedownPrompt()">🔔tutaj</button>
+</body>
+</html>
